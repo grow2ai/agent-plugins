@@ -1,0 +1,30 @@
+{
+  "name": "uspacy",
+  "version": "0.1.0",
+  "description": "Агент-аналітик вашої CRM на Uspacy: питання своїми словами — відповідь цифрами з посиланням на джерело",
+  "author": {
+    "name": "Andrew Maryasov",
+    "email": "am@auspex.company",
+    "url": "https://grow2.ai"
+  },
+  "homepage": "https://grow2.ai",
+  "repository": "https://github.com/grow2ai/agent-plugins",
+  "license": "MIT",
+  "keywords": ["uspacy", "crm", "analytics", "mcp", "ukraine"],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "hooks": {},
+  "interface": {
+    "displayName": "Uspacy",
+    "shortDescription": "Аналітик вашої CRM на Uspacy",
+    "longDescription": "Ставте питання своїй CRM живою мовою — де зависли гроші, хто перевантажений, кого давно не торкались — і отримуйте відповідь цифрами з посиланням на джерело. Плагін нічого не видаляє і не змінює структуру порталу.",
+    "developerName": "Grow2.ai",
+    "category": "Productivity",
+    "websiteURL": "https://grow2.ai",
+    "defaultPrompt": [
+      "Де зависли гроші?",
+      "Хто перевантажений задачами?",
+      "Кого з клієнтів не торкались понад тиждень?"
+    ]
+  }
+}

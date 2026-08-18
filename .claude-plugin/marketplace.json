@@ -1,0 +1,20 @@
+{
+  "name": "grow2ai",
+  "description": "Плагіни для агентних харнесів від Grow2.ai",
+  "owner": {
+    "name": "Andrew Maryasov",
+    "email": "am@auspex.company"
+  },
+  "plugins": [
+    {
+      "name": "uspacy",
+      "description": "Агент-аналітик вашої CRM на Uspacy: питання своїми словами — відповідь цифрами з посиланням на джерело",
+      "version": "0.1.0",
+      "source": "./uspacy",
+      "author": {
+        "name": "Andrew Maryasov",
+        "email": "am@auspex.company"
+      }
+    }
+  ]
+}

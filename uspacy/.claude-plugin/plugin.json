@@ -1,0 +1,13 @@
+{
+  "name": "uspacy",
+  "description": "Агент-аналітик вашої CRM на Uspacy: питання своїми словами — відповідь цифрами з посиланням на джерело",
+  "version": "0.1.0",
+  "author": {
+    "name": "Andrew Maryasov",
+    "email": "am@auspex.company"
+  },
+  "homepage": "https://grow2.ai",
+  "repository": "https://github.com/grow2ai/agent-plugins",
+  "license": "MIT",
+  "keywords": ["uspacy", "crm", "analytics", "mcp", "ukraine"]
+}

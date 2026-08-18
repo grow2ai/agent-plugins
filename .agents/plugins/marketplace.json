@@ -1,0 +1,20 @@
+{
+  "name": "grow2ai",
+  "interface": {
+    "displayName": "Grow2.ai"
+  },
+  "plugins": [
+    {
+      "name": "uspacy",
+      "source": {
+        "source": "local",
+        "path": "./uspacy"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
