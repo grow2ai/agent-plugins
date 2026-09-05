@@ -2,6 +2,15 @@
 
 Плагіни для агентних середовищ — Claude Code, Codex, Claude cowork.
 
+> **English.** This repository publishes agent plugins for AI coding
+> harnesses — Claude Code, Codex, Claude Cowork. The first plugin, `uspacy`,
+> turns a CRM question asked in plain language into an answer in numbers,
+> each one traceable to the API call it came from: where money is stuck,
+> who on the team is overloaded, which leads went cold, which channel is
+> expensive. It runs against the free, official Uspacy MCP server, installs
+> on any OS with no local runtime, and never deletes records or changes
+> portal structure. See [`uspacy/README.md`](uspacy/README.md) for details.
+
 | Плагін | Що робить |
 |---|---|
 | [`uspacy`](uspacy/) | Агент-аналітик вашої CRM на Uspacy: питання своїми словами — відповідь цифрами з посиланням на джерело |
@@ -13,6 +22,24 @@
 Ви питаєте «де зависли гроші», «хто перевантажений», «які угоди давно не рухались», «скільки коштує канал» — агент іде в портал, рахує і відповідає числами, показуючи, звідки кожне з них узялось. За підсумком розбору вміє поставити задачу або лишити коментар.
 
 Працює через офіційний MCP-сервер Uspacy (`https://mcp.uspacy.com/mcp`). Сервер безкоштовний і доступний на всіх тарифах, нічого встановлювати на портал не треба.
+
+### Сім команд
+
+Кожна команда — прямий шлях до одного рецепту зі скіла; те саме питання
+можна поставити живою мовою, без команди, — скіл підбере рецепт сам.
+
+| Команда | Що показує |
+|---|---|
+| `/uspacy:pipeline` | Стан воронки продажів: де скупчились угоди й на чому все стоїть |
+| `/uspacy:stuck [днів]` | Гроші, що зависли: відкриті угоди, яких давно не рухали |
+| `/uspacy:silent [днів]` | Клієнти й ліди без дотиків: хто мовчить і в кого |
+| `/uspacy:workload` | Навантаження команди: відкриті задачі й справи по людях |
+| `/uspacy:channels` | Канали: обсяг проти конверсії |
+| `/uspacy:today` | Що на сьогодні і що прострочено |
+| `/uspacy:health` | Загальний розбір порталу: що заповнюється, де рветься процес |
+
+Виклики, поля й приклади розрахунків для кожної команди — у каталозі
+рецептів, [`analysis-recipes.md`](uspacy/skills/uspacy-crm/references/analysis-recipes.md).
 
 ### Встановлення — Claude Code
 
