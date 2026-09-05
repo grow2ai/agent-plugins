@@ -75,7 +75,8 @@ README](../README.md).
 - [`skills/uspacy-crm/SKILL.md`](skills/uspacy-crm/SKILL.md) — повний текст
   моїх восьми самообмежень і чому кожне з них саме таке.
 - [`skills/uspacy-crm/references/analysis-recipes.md`](skills/uspacy-crm/references/analysis-recipes.md) —
-  каталог семи сценаріїв: які виклики, які поля, як рахувати.
+  каталог із двадцяти сценаріїв (сім із них мають команди): які виклики,
+  які поля, як рахувати.
 - [`skills/uspacy-crm/references/mcp-coverage.md`](skills/uspacy-crm/references/mcp-coverage.md) —
   що доступно через MCP, а що ні.
 - [`skills/uspacy-crm/references/api-behaviour.md`](skills/uspacy-crm/references/api-behaviour.md) —
