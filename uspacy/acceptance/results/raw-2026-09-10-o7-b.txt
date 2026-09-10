@@ -1,0 +1,3 @@
+Не можу зараз надійно порахувати угоди: підключення до Uspacy CRM у цій сесії недоступне, а Orca повертає `runtime_unavailable: Could not connect to the running Orca app`.
+
+Перезапустіть Orca — після цього я одразу перевірю точну кількість угод.
