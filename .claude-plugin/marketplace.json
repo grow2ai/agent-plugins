@@ -15,6 +15,16 @@
         "name": "Andrew Maryasov",
         "email": "am@auspex.company"
       }
+    },
+    {
+      "name": "aelo",
+      "description": "Ask Claude about your sales calls and chats in Aelo — transcripts, analyses with quotes and timecodes, deal summaries, team quality; read-only",
+      "version": "0.1.0",
+      "source": "./aelo",
+      "author": {
+        "name": "Andrew Maryasov",
+        "email": "am@auspex.company"
+      }
     }
   ]
 }

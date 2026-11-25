@@ -1,0 +1,30 @@
+{
+  "name": "aelo",
+  "version": "0.1.0",
+  "description": "Ask your assistant about your sales calls and chats in Aelo: transcripts, analyses with quotes and timecodes, deal summaries and team quality — read-only, within your own access",
+  "author": {
+    "name": "Andrew Maryasov",
+    "email": "am@auspex.company",
+    "url": "https://grow2.ai"
+  },
+  "homepage": "https://aelo.cloud/en/docs/integrations/ai-assistants",
+  "repository": "https://github.com/grow2ai/agent-plugins",
+  "license": "MIT",
+  "keywords": ["aelo", "call-analytics", "sales", "transcripts", "mcp"],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "hooks": {},
+  "interface": {
+    "displayName": "Aelo",
+    "shortDescription": "Your sales calls and chats, read-only",
+    "longDescription": "Ask about your team's calls and chats in plain words: the assistant searches them, reads transcripts and brings analyses with quotes and timecodes, deal summaries and team quality. It only reads, and only what you see in Aelo yourself.",
+    "developerName": "Grow2.ai",
+    "category": "Productivity",
+    "websiteURL": "https://aelo.cloud",
+    "defaultPrompt": [
+      "Find last week's calls with a quality score below 60",
+      "What did the analysis list as improvements for this call?",
+      "How did my team's quality change this month?"
+    ]
+  }
+}

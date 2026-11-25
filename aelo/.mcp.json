@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "aelo": {
+      "type": "http",
+      "url": "https://mcp.aelo.cloud/mcp"
+    }
+  }
+}
