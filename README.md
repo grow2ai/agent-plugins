@@ -3,7 +3,7 @@
 Плагіни для агентних середовищ — Claude Code, Codex, Claude cowork.
 
 > **English.** This repository publishes agent plugins for AI coding
-> harnesses — Claude Code, Codex, Claude Cowork. The first plugin, `uspacy`,
+> harnesses — Claude Code, Codex, Claude Cowork. The first plugin, `uspacy-advisor`,
 > turns a CRM question asked in plain language into an answer in numbers,
 > each one traceable to the API call it came from: where money is stuck,
 > who on the team is overloaded, which leads went cold, which channel is
@@ -13,11 +13,11 @@
 
 | Плагін | Що робить |
 |---|---|
-| [`uspacy`](uspacy/) | Агент-аналітик вашої CRM на Uspacy: питання своїми словами — відповідь цифрами з посиланням на джерело |
+| [`uspacy-advisor`](uspacy/) | Агент-аналітик вашої CRM на Uspacy: питання своїми словами — відповідь цифрами з посиланням на джерело |
 
 ---
 
-## uspacy
+## uspacy-advisor
 
 Ви питаєте «де зависли гроші», «хто перевантажений», «які угоди давно не рухались», «скільки коштує канал» — агент іде в портал, рахує і відповідає числами, показуючи, звідки кожне з них узялось. За підсумком розбору вміє поставити задачу або лишити коментар.
 
@@ -30,15 +30,15 @@
 
 | Команда | Що показує |
 |---|---|
-| `/uspacy:pipeline` | Стан воронки продажів: де скупчились угоди й на чому все стоїть |
-| `/uspacy:stuck [днів]` | Гроші, що зависли: відкриті угоди, яких давно не рухали |
-| `/uspacy:silent [днів]` | Клієнти й ліди без дотиків: хто мовчить і в кого |
-| `/uspacy:workload` | Навантаження команди: відкриті задачі й справи по людях |
-| `/uspacy:channels` | Канали: обсяг проти конверсії |
-| `/uspacy:today` | Що на сьогодні і що прострочено |
-| `/uspacy:health` | Загальний розбір порталу: що заповнюється, де рветься процес |
+| `/uspacy-advisor:pipeline` | Стан воронки продажів: де скупчились угоди й на чому все стоїть |
+| `/uspacy-advisor:stuck [днів]` | Гроші, що зависли: відкриті угоди, яких давно не рухали |
+| `/uspacy-advisor:silent [днів]` | Клієнти й ліди без дотиків: хто мовчить і в кого |
+| `/uspacy-advisor:workload` | Навантаження команди: відкриті задачі й справи по людях |
+| `/uspacy-advisor:channels` | Канали: обсяг проти конверсії |
+| `/uspacy-advisor:today` | Що на сьогодні і що прострочено |
+| `/uspacy-advisor:health` | Загальний розбір порталу: що заповнюється, де рветься процес |
 
-Команди працюють в обох середовищах — у Claude Code як `/uspacy:pipeline`,
+Команди працюють в обох середовищах — у Claude Code як `/uspacy-advisor:pipeline`,
 у Codex як `/pipeline`. Ставити питання живою мовою можна скрізь і завжди:
 команда лише коротший шлях до того самого рецепту.
 
@@ -49,7 +49,7 @@
 
 ```
 /plugin marketplace add grow2ai/agent-plugins
-/plugin install uspacy@grow2ai
+/plugin install uspacy-advisor@grow2ai
 /mcp
 ```
 
@@ -61,7 +61,7 @@
 
 ```
 codex plugin marketplace add grow2ai/agent-plugins
-codex plugin add uspacy@grow2ai
+codex plugin add uspacy-advisor@grow2ai
 codex mcp login uspacy
 ```
 
@@ -79,9 +79,9 @@ codex mcp login uspacy
 
 Лікується повторним входом, не перевстановленням:
 
-- у Claude Code — `/mcp`, вибрати `plugin:uspacy:uspacy`, Authenticate;
+- у Claude Code — `/mcp`, вибрати `plugin:uspacy-advisor:uspacy`, Authenticate;
 - у терміналі, якщо браузер не відкривається сам —
-  `claude mcp login "plugin:uspacy:uspacy" --no-browser`: команда надрукує
+  `claude mcp login "plugin:uspacy-advisor:uspacy" --no-browser`: команда надрукує
   посилання, його відкриваєте вручну, а адресу, на яку перекине браузер,
   вставляєте назад у термінал;
 - у Codex — `codex mcp login uspacy`.
@@ -90,17 +90,41 @@ codex mcp login uspacy
 дайте команді псевдотермінал — тоді вхід проходить без ручного копіювання:
 
 ```
-script -q /dev/null claude mcp login "plugin:uspacy:uspacy"
+script -q /dev/null claude mcp login "plugin:uspacy-advisor:uspacy"
 ```
 
 Друга можлива причина, якщо повторний вхід не допоміг: портал недоступний
 із вашої мережі. Перевірити просто — `curl -I https://ваш-портал.uspacy.ua`.
 Порожня відповідь або таймаут означають мережу, а не плагін.
 
+### Якщо у вас стояв плагін під старою назвою `uspacy`
+
+З версії 0.2.0 плагін називається `uspacy-advisor`. Після оновлення
+маркетплейсу стара назва перестає працювати, тому встановіть його один
+раз під новою.
+
+Claude Code, у терміналі:
+
+```
+claude plugin marketplace update grow2ai
+claude plugin install uspacy-advisor@grow2ai
+```
+
+Codex:
+
+```
+codex plugin marketplace upgrade grow2ai
+codex plugin remove uspacy@grow2ai
+codex plugin add uspacy-advisor@grow2ai
+```
+
+Відкрийте нову сесію. Команди тепер починаються з `/uspacy-advisor:`, а в
+Claude Code сервер може попросити авторизуватись ще раз через `/mcp`.
+
 ### Оновлення в Claude Code: знімок і встановлена копія — різні речі
 
 Симптом, на який легко натрапити: MCP підключений, скіли працюють, а
-слеш-команд `/uspacy:*` немає. Це не поломка — це стара копія плагіна.
+слеш-команд `/uspacy-advisor:*` немає. Це не поломка — це стара копія плагіна.
 
 У Claude Code два окремі сховища: **знімок маркетплейсу** (звідки ставлять)
 і **встановлена копія** (чим користуються). Оновлення першого не оновлює
@@ -109,20 +133,20 @@ script -q /dev/null claude mcp login "plugin:uspacy:uspacy"
 | Команда | Що робить | Чого не робить |
 |---|---|---|
 | `claude plugin marketplace update grow2ai` | оновлює знімок | не чіпає встановлену копію |
-| `claude plugin install uspacy@grow2ai` | ставить, якщо не стоїть | на вже встановленому — мовчки нічого |
+| `claude plugin install uspacy-advisor@grow2ai` | ставить, якщо не стоїть | на вже встановленому — мовчки нічого |
 
 Щоб реально оновитись, копію треба перевстановити:
 
 ```
 claude plugin marketplace update grow2ai
-claude plugin uninstall uspacy@grow2ai
-claude plugin install uspacy@grow2ai
+claude plugin uninstall uspacy-advisor@grow2ai
+claude plugin install uspacy-advisor@grow2ai
 ```
 
 Після цього **відкрийте нову сесію** — команди й скіли реєструються на
 старті, у поточній сесії вони не з'являться.
 
-Перевірка: наберіть `/uspacy:` — має бути сім команд.
+Перевірка: наберіть `/uspacy-advisor:` — має бути сім команд.
 
 ### Оновлення: Codex не підхоплює зміни сам
 
@@ -139,14 +163,14 @@ codex plugin marketplace upgrade grow2ai
 оновлюється взагалі — його треба зняти й поставити наново:
 
 ```
-codex plugin remove uspacy@grow2ai
+codex plugin remove uspacy-advisor@grow2ai
 codex plugin marketplace remove grow2ai
 codex plugin marketplace add grow2ai/agent-plugins
-codex plugin add uspacy@grow2ai
+codex plugin add uspacy-advisor@grow2ai
 ```
 
 Перевірити, що оновилось, можна питанням до самого агента: «перелічи скіли,
-які тобі доступні від плагіна uspacy» — їх має бути два, `uspacy-crm` і
+які тобі доступні від плагіна uspacy-advisor» — їх має бути два, `uspacy-crm` і
 `crm-maturity`.
 
 **Ця пастка коштувала нам одного червоного прогону приймання.** Codex
@@ -159,7 +183,7 @@ codex plugin add uspacy@grow2ai
 
 Це не обмеження реалізації, а межа, проведена свідомо. Агент, який ходить у вашу робочу CRM, помиляється дорожче, ніж агент, який редагує файл: відкотити не завжди можна.
 
-**Не видаляє і не пропонує видалити.** Ні записи, ні поля, ні воронки, ні кошик, ні «тільки оці три». Підтвердження користувача цього не змінює, і жодна обставина — бекап перед тим, видалення поштучно замість пакета, короткий список «явно безпечних» — межу не зсуває.
+**Не видаляє і не пропонує видалити.** Ні записи, ні поля, ні воронки, ні файли, ні кошик, ні «тільки оці три». Підтвердження користувача цього не змінює, і жодна обставина — бекап перед тим, видалення поштучно замість пакета, короткий список «явно безпечних» — межу не зсуває.
 
 Причина не абстрактна. Під час розвідки API виклик масового видалення з тілом `{"all": false, "entity_ids": [три id]}` повернув `204` і виніс **усю колекцію**: 721 лід, 746 компаній, 12 угод. Дані вціліли — в Uspacy є кошик, — але людина, яка попросила прибрати три записи, побачила б порожні списки. Список id, який ви підтвердили, і те, що реально зникне, — різні речі.
 

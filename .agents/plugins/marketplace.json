@@ -5,7 +5,7 @@
   },
   "plugins": [
     {
-      "name": "uspacy",
+      "name": "uspacy-advisor",
       "source": {
         "source": "local",
         "path": "./uspacy"
