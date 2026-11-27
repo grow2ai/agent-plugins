@@ -1,19 +1,24 @@
 {
   "name": "aelo",
-  "description": "Ask Claude about your sales calls and chats in Aelo: transcripts, analyses with quotes and timecodes, deal summaries and team quality — read-only, within your own access",
-  "version": "0.1.0",
+  "description": "Sales analytics from your conversations, in Claude: ask what is happening in your deals and why, and get answers with quotes and timecodes from your calls and chats. Read-only, within your own Aelo access.",
+  "version": "0.3.0",
   "author": {
-    "name": "Andrew Maryasov",
-    "email": "am@auspex.company"
+    "name": "Aelo",
+    "email": "support@aelo.cloud",
+    "url": "https://aelo.cloud"
   },
-  "homepage": "https://aelo.cloud/en/docs/integrations/ai-assistants",
+  "homepage": "https://aelo.cloud/en/?utm_source=claude&utm_medium=plugin&utm_campaign=ai-assistants",
   "repository": "https://github.com/grow2ai/agent-plugins",
   "license": "MIT",
   "keywords": [
     "aelo",
-    "call-analytics",
-    "sales",
-    "transcripts",
+    "sales-analytics",
+    "conversation-intelligence",
+    "deals",
+    "crm",
+    "sales-calls",
+    "call-transcripts",
+    "sales-coaching",
     "mcp"
   ],
   "icon": "./.claude-plugin/icon.png",

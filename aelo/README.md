@@ -1,22 +1,43 @@
 # Aelo plugin
 
-Ask your AI assistant about your team's sales and support calls, chats and
-e-mails analysed in [Aelo](https://aelo.cloud). The assistant searches them,
-reads transcripts, brings analyses with quotes and timecodes, summarises a
-deal and reports team quality for a period. **It only reads** — nothing is
-written to Aelo — and it sees only what you see in Aelo yourself, with your
-role and group access, in the organization you chose when you connected.
+[Aelo](https://aelo.cloud/?utm_source=github&utm_medium=plugin&utm_campaign=ai-assistants&utm_content=readme)
+is sales analytics from conversations: it shows what is happening in your sales
+and why — from every call and chat, deal by deal, inside your CRM.
 
-The plugin is a connection to the Aelo MCP server
-(`https://mcp.aelo.cloud/mcp`) plus one skill, `aelo-calls`, that keeps the
-assistant to what the tools returned: every claim sourced, quotes and
-timecodes copied rather than rebuilt, "not confirmed" instead of a guess,
-personal data only when asked for. It runs nothing locally.
+This plugin brings that into your AI assistant — Claude, Claude Code, ChatGPT
+or Codex. Ask in plain words where a deal stands and what to say at the next
+contact, what the customer actually said, which calls went badly and why, or
+how your team's quality is moving. Answers come with the quotes and timecodes
+Aelo recorded, so you can check them against the call.
 
-## Before you start
+**It only reads** — nothing is written to Aelo — and it sees only what you see
+in Aelo yourself, with your role and group access, in the organization you
+chose when you connected.
+
+## What you can ask
+
+- Where does the deal behind yesterday's call with Northwind stand, and what should I say at the next contact?
+- Take the lowest-scored call of the last 7 days and quote what the customer said about the price, with timecodes.
+- Find last week's calls with a quality score below 60 and tell me what the three worst have in common.
+- What did the analysis of my latest call list as improvements?
+- How did my team's quality change this month compared with the previous period, per employee?
+
+## No Aelo account yet?
+
+[Start free](https://app.aelo.cloud/sign-up/?utm_source=github&utm_medium=plugin&utm_campaign=ai-assistants&cta=readme)
+— no credit card. A free organization gets every Pro feature for 14 days,
+starting with its next analysed call or chat, and this connector works during
+those 14 days. Connect your CRM or telephony, or upload a few recordings, and
+ask your assistant about them.
+
+Plans and prices: <https://aelo.cloud/en/pricing/?utm_source=github&utm_medium=plugin&utm_campaign=ai-assistants&utm_content=readme>
+
+## Before you connect
 
 - An Aelo account on a paid plan (Starter and above) or during the Pro trial.
   The free Pay-as-you-go plan does not include the connector outside the trial.
+  Deal states (status, why, next action, what to say) are built on Pro and
+  above and during the trial.
 - Your organization's owner or an admin first switches on **AI assistants
   connected by your users** in **Settings → Organization → New kinds of
   processing**. Until then the assistant receives nothing.
@@ -44,23 +65,28 @@ codex plugin add aelo@grow2ai
 codex mcp login aelo
 ```
 
+The plugin is a connection to the Aelo MCP server
+(`https://mcp.aelo.cloud/mcp`) plus one skill, `aelo-calls`, that keeps the
+assistant to what the tools returned: claims sourced, quotes and timecodes
+copied rather than rebuilt, "not confirmed" instead of a guess, personal data
+only when asked for. It runs nothing locally.
+
 ## Tools
 
 | Tool               | What it returns                                                                      |
 | ------------------ | ------------------------------------------------------------------------------------ |
+| `get_deal_summary` | the deal card as the Aelo app shows it: status, why, the next action and what to say  |
 | `search_records`   | calls, chats and e-mails by period, employee, project, category and quality score   |
-| `get_transcript`   | the transcript of one record: text, speakers, start/end in seconds (phone numbers, e-mails and card numbers masked) |
 | `get_analysis`     | the latest analysis: quality score, summary, key moments with quotes and timecodes, strengths, improvements, agreements |
-| `get_deal_summary` | the deal card as the Aelo app shows it                                               |
+| `get_transcript`   | the transcript of one record: text, speakers, start/end in seconds (phone numbers, e-mails and card numbers masked) |
 | `get_team_quality` | team and per-employee metrics for a period, as the Aelo dashboard computes them      |
 
-## Example prompts
+## Your data
 
-- Find last week's calls with a quality score below 60 and tell me what the three worst have in common.
-- Open the transcript of the call with Acme from Monday and quote what the customer said about the price, with timecodes.
-- What did the analysis of this call list as improvements for the rep?
-- Summarise the state of the Northwind deal and what the rep should do next.
-- How did my team's quality change this month compared with the previous period, per employee?
+Role and group access are checked on every request, so a manager of one group
+sees only that group's calls, and a change in access takes effect at once.
+Each read of a full transcript or an analysis is recorded in Aelo's access
+log. Aelo stores conversation content in the EU.
 
 ## Disconnect
 

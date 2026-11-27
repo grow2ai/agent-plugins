@@ -1,6 +1,6 @@
 {
   "name": "grow2ai",
-  "description": "Плагіни для агентних харнесів від Grow2.ai",
+  "description": "Agent plugins by Grow2.ai: Aelo (sales analytics from conversations) and Uspacy CRM analyst",
   "owner": {
     "name": "Andrew Maryasov",
     "email": "am@auspex.company"
@@ -18,12 +18,13 @@
     },
     {
       "name": "aelo",
-      "description": "Ask Claude about your sales calls and chats in Aelo — transcripts, analyses with quotes and timecodes, deal summaries, team quality; read-only",
-      "version": "0.1.0",
+      "description": "Sales analytics from your conversations, in Claude: where your deals stand and why, with quotes and timecodes from your calls and chats; read-only",
+      "version": "0.3.0",
       "source": "./aelo",
       "author": {
-        "name": "Andrew Maryasov",
-        "email": "am@auspex.company"
+        "name": "Aelo",
+        "email": "support@aelo.cloud",
+        "url": "https://aelo.cloud"
       }
     }
   ]
