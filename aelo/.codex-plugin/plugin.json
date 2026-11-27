@@ -1,38 +1,48 @@
 {
   "name": "aelo",
-  "version": "0.2.0",
-  "description": "Ask your assistant about your sales calls and chats in Aelo: transcripts, analyses with quotes and timecodes, deal summaries and team quality — read-only, within your own access",
+  "version": "0.3.0",
+  "description": "Sales analytics from your conversations: ask your assistant what is happening in your deals and why, with quotes and timecodes from your calls and chats — read-only, within your own Aelo access",
   "author": {
-    "name": "Andrew Maryasov",
-    "email": "am@auspex.company",
-    "url": "https://grow2.ai"
+    "name": "Aelo",
+    "email": "support@aelo.cloud",
+    "url": "https://aelo.cloud"
   },
-  "homepage": "https://aelo.cloud/en/docs/integrations/ai-assistants",
+  "homepage": "https://aelo.cloud/en/?utm_source=openai&utm_medium=plugin&utm_campaign=ai-assistants",
   "repository": "https://github.com/grow2ai/agent-plugins",
   "license": "MIT",
-  "keywords": ["aelo", "call-analytics", "sales", "transcripts", "mcp"],
+  "keywords": [
+    "aelo",
+    "sales-analytics",
+    "conversation-intelligence",
+    "deals",
+    "crm",
+    "sales-calls",
+    "call-transcripts",
+    "sales-coaching",
+    "mcp"
+  ],
   "mcpServers": "./.mcp.json",
   "skills": "./skills/",
   "interface": {
     "displayName": "Aelo",
-    "shortDescription": "Your sales calls, read-only",
-    "longDescription": "Aelo analyses your team's calls, chats and e-mails and scores them against your own criteria. This plugin lets ChatGPT and Codex read that data on behalf of the signed-in Aelo user, and nothing beyond what that user sees in Aelo.\n\nFive read-only tools: search calls, chats and e-mails by period, employee, project, call category and quality score; get a transcript with speakers and timecodes (phone numbers, e-mail addresses and card numbers are masked; names are kept as in Aelo); get the call analysis with its score, summary, key moments with quotes and timecodes, strengths, improvements and agreements; get a deal summary as the Aelo app shows it; get the team's and each employee's quality for a period, as the Aelo dashboard computes it.\n\nYour role and group access are checked on every request, so a manager of one group sees only that group's calls, and a change in access takes effect at once. The plugin never changes your data in Aelo; each read of a full transcript or an analysis is recorded in Aelo's access log. Connected assistants are listed and can be revoked in Aelo under Settings → Profile.\n\nBefore you connect: you need an Aelo account on a plan that includes AI-assistant connections, and your organization's owner or an admin must first switch on \"AI assistants connected by your users\" in Settings → Organization → New kinds of processing.",
+    "shortDescription": "Sales insights from your calls",
+    "longDescription": "Aelo is sales analytics from conversations: it shows what is happening in your sales and why — from every call and chat, deal by deal, inside your CRM. With this plugin you ask ChatGPT or Codex about it in plain words: where a deal stands and what to say at the next contact, what the customer actually said, which calls went badly and why, how your team's quality is moving. Answers come with the quotes and timecodes Aelo recorded, so you can check them against the call. Aelo understands 90+ languages and stores conversation content in the EU.\n\nFive read-only tools: get a deal summary as the Aelo app shows it — status, why, the next action and what to say; search calls, chats and e-mails by period, employee, project, call category and quality score; get the call analysis with its score, summary, key moments with quotes and timecodes, strengths, improvements and agreements; get a transcript with speakers and timecodes (phone numbers, e-mail addresses and card numbers are masked; names are kept as in Aelo); get the team's and each employee's quality for a period, as the Aelo dashboard computes it.\n\nThe plugin reads on behalf of the signed-in Aelo user, and nothing beyond what that user sees in Aelo. Role and group access are checked on every request, so a manager of one group sees only that group's calls, and a change in access takes effect at once. The plugin never changes your data in Aelo; each read of a full transcript or an analysis is recorded in Aelo's access log. Connected assistants are listed and can be revoked in Aelo under Settings → Profile.\n\nBefore you connect: you need an Aelo account on a plan that includes AI-assistant connections, and your organization's owner or an admin must first switch on \"AI assistants connected by your users\" in Settings → Organization → New kinds of processing.",
     "developerName": "Auspex Streamline S.L.",
     "category": "Productivity",
     "capabilities": [
-      "Search calls",
-      "Read transcripts",
-      "Read call analyses",
       "Read deal summaries",
+      "Search calls",
+      "Read call analyses",
+      "Read transcripts",
       "Read team quality"
     ],
-    "websiteURL": "https://aelo.cloud",
+    "websiteURL": "https://aelo.cloud/?utm_source=openai&utm_medium=plugin&utm_campaign=ai-assistants",
     "supportURL": "https://aelo.cloud/en/contact",
     "privacyPolicyURL": "https://aelo.cloud/en/legal/privacy",
     "termsOfServiceURL": "https://aelo.cloud/en/legal/terms",
     "defaultPrompt": [
-      "Find last week's calls with a quality score below 60",
-      "What did my latest call analysis list as improvements?",
+      "Where does the deal behind my latest call stand, and what should I say next?",
+      "Find last week's calls scored below 60 and tell me what went wrong",
       "How did my team's quality change this month?"
     ],
     "composerIcon": "./assets/icon.png",
@@ -96,7 +106,7 @@
         "commerce_description": "This plugin does not sell products or process payments."
       },
       "publication": {
-        "release_notes": "Initial release: five read-only tools over the Aelo connector."
+        "release_notes": "Five read-only tools over the Aelo connector: deal summaries with the next step, call search, call analyses, transcripts and team quality."
       }
     }
   }

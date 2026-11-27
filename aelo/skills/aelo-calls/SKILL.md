@@ -1,11 +1,12 @@
 ---
 name: aelo-calls
 description: >-
-  Use for any question about the user's own sales or support calls, chats and
-  e-mails analysed in Aelo: find calls by period, employee, project, category
-  or quality score; read a transcript; bring the analysis of a call with its
-  quotes and timecodes; summarise a deal; report team quality for a period.
-  Read-only: it never changes anything in Aelo.
+  Use for any question about the user's own sales or support calls, chats,
+  e-mails and deals analysed in Aelo: where a deal stands, why, and what to do
+  or say next; find calls by period, employee, project, category or quality
+  score; read a transcript; bring the analysis of a call with its quotes and
+  timecodes; report team quality for a period. Read-only: it never changes
+  anything in Aelo.
 ---
 
 # Aelo: working with the user's calls
@@ -22,7 +23,7 @@ below. They are short on purpose.
 | `search_records`   | find records: `createdAfter`/`createdBefore` (ISO 8601 with offset), `agentId`, projects, call category, quality score 0–100; paged by `limit`/`offset`, with a total |
 | `get_transcript`   | the text and segments (speaker, start/end in seconds) of one `recordId`               |
 | `get_analysis`     | the latest analysis of one `recordId`: score, summary, key moments, strengths, improvements, agreements |
-| `get_deal_summary` | the deal card — by `stateId`, or by the `recordId` of one of its calls (exactly one)  |
+| `get_deal_summary` | the deal card — status and close chance, why (with its quote), the next action, what to say, commitments, objections — by `stateId`, or by the `recordId` of one of its calls (exactly one) |
 | `get_team_quality` | the team's and each employee's metrics for a period                                   |
 
 There is no tool that writes, deletes, sends, or starts an analysis. If asked
@@ -80,15 +81,37 @@ on in plain words and do not retry in a loop.
 
 - The organization's owner or an admin has not switched on the connector
   ("AI assistants connected by your users", Settings → Organization → New
-  kinds of processing), or the plan does not include it: the person needs to
-  ask them. Nothing I can do changes that.
+  kinds of processing): the person needs to ask them. Nothing I can do
+  changes that.
+- The plan does not include the connector: it is open on Starter and above
+  and during the 14-day Pro trial of a free organization. I say that once, in
+  one sentence, and that the account owner changes the plan in Aelo under
+  Settings → Organization → Plan & Billing. Plans:
+  <https://aelo.cloud/en/pricing/?utm_source=ai-assistant&utm_medium=mcp&utm_campaign=ai-assistants>
 - Access was revoked or changed: the person reconnects, or asks their admin.
 - "Not found" for a record: it does not exist **for this person** — it may be
   outside their group, or a record of a "Transcript only" project without an
-  analysis, which their plan does not open. I say that, not "it does not
+  analysis, which opens on Business and above. I say that, not "it does not
   exist".
+- No deal card for a call: Aelo builds deal states on Pro and above (and
+  during the Pro trial), for conversations that came from a connected CRM and
+  are linked to a deal or lead. I say which of these may be the reason, not
+  "this deal has no state".
 - "Retry shortly" / "too many calls": wait and retry once, then tell the
   person.
+
+## When the question needs more than these tools
+
+Some questions are answered in the Aelo app, not through these tools: what
+customers object to, ask and decline across a whole period, with quotes
+(**Analytics → Voice of Customer**; the **Objections** report also opens from
+the dashboard's **Quality** tab); all deals at risk in one list (the **Deals**
+screen); a draft follow-up message to the client, or a task in the CRM from
+the deal card. When the person asks for one
+of these, I answer what the tools can — for example, from the analyses of the
+calls I found — say plainly that it is a partial picture, and name the
+screen in Aelo (<https://app.aelo.cloud>) where the full one is. One sentence,
+no sales pitch, and I do not repeat it in the same conversation.
 
 ## Scope
 
