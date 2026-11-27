@@ -16,7 +16,7 @@
   "interface": {
     "displayName": "Aelo",
     "shortDescription": "Your sales calls, read-only",
-    "longDescription": "Aelo analyses your team's calls and chats and scores them against your own criteria. This plugin lets ChatGPT and Codex read that data on behalf of the signed-in Aelo user, and nothing beyond what that user sees in Aelo.\n\nFive read-only tools: search calls by period, employee, project, call category and quality score; get a transcript with speakers and timecodes (phone numbers, e-mails and card numbers are masked); get the call analysis with its score, summary, key moments with quotes and timecodes, strengths, improvements and agreements; get a deal summary as the Aelo app shows it; get the team's and each employee's quality for a period, as the Aelo dashboard computes it.\n\nYour role and group access are checked on every request, so a manager of one group sees only that group's calls, and a change in access takes effect at once. The plugin never changes your data in Aelo; each read of a full transcript or an analysis is recorded in Aelo's access log. Connected assistants are listed and can be revoked in Aelo under Settings → Profile.\n\nBefore you connect: you need an Aelo account, and your organization's owner or an admin must first switch on \"AI assistants connected by your users\" in Settings → Organization → New kinds of processing.",
+    "longDescription": "Aelo analyses your team's calls, chats and e-mails and scores them against your own criteria. This plugin lets ChatGPT and Codex read that data on behalf of the signed-in Aelo user, and nothing beyond what that user sees in Aelo.\n\nFive read-only tools: search calls, chats and e-mails by period, employee, project, call category and quality score; get a transcript with speakers and timecodes (phone numbers, e-mail addresses and card numbers are masked; names are kept as in Aelo); get the call analysis with its score, summary, key moments with quotes and timecodes, strengths, improvements and agreements; get a deal summary as the Aelo app shows it; get the team's and each employee's quality for a period, as the Aelo dashboard computes it.\n\nYour role and group access are checked on every request, so a manager of one group sees only that group's calls, and a change in access takes effect at once. The plugin never changes your data in Aelo; each read of a full transcript or an analysis is recorded in Aelo's access log. Connected assistants are listed and can be revoked in Aelo under Settings → Profile.\n\nBefore you connect: you need an Aelo account on a plan that includes AI-assistant connections, and your organization's owner or an admin must first switch on \"AI assistants connected by your users\" in Settings → Organization → New kinds of processing.",
     "developerName": "Auspex Streamline S.L.",
     "category": "Productivity",
     "capabilities": [
@@ -32,7 +32,7 @@
     "termsOfServiceURL": "https://aelo.cloud/en/legal/terms",
     "defaultPrompt": [
       "Find last week's calls with a quality score below 60",
-      "What did the analysis list as improvements for this call?",
+      "What did my latest call analysis list as improvements?",
       "How did my team's quality change this month?"
     ],
     "composerIcon": "./assets/icon.png",
@@ -53,7 +53,7 @@
               "description": "Quote the customer from the lowest-scored recent call",
               "prompt": "Take the lowest-scored call of the last 7 days and quote what the customer said about the price, with timecodes.",
               "tools_triggered": "search_records, get_transcript",
-              "expected_behavior": "Quote the customer's words about the price from the transcript, with timecodes, or say that the price was not discussed. Phone numbers, e-mail addresses and card numbers stay masked."
+              "expected_behavior": "Quote the customer's words about the price from the transcript, with timecodes, or say that the price was not discussed. If there are no calls in the period, say so. Phone numbers, e-mail addresses and card numbers stay masked."
             },
             {
               "description": "List the improvements from a call analysis",
@@ -71,7 +71,7 @@
               "description": "Compare team quality with the previous period",
               "prompt": "How did my team's quality change this month compared with the previous period, per employee?",
               "tools_triggered": "get_team_quality",
-              "expected_behavior": "Report the team's and each employee's quality for the month next to the previous period, as the Aelo dashboard computes it."
+              "expected_behavior": "Report the team's and each employee's quality for the month next to the previous period, as the Aelo dashboard computes it. Where a period has no data, say so."
             }
           ],
           "negative": [
@@ -83,7 +83,7 @@
             {
               "description": "Access boundary: signed in as the manager of one group",
               "prompt": "Show me the calls of the other sales groups, outside my own.",
-              "expected_behavior": "No call of another group is returned. Say that only what this user sees in Aelo is available."
+              "expected_behavior": "With the one-group manager account, no call of another group is returned. Say that only what this user sees in Aelo is available."
             },
             {
               "description": "Unsupported payment: no billing in the plugin",
