@@ -1,6 +1,6 @@
 {
   "name": "aelo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ask your assistant about your sales calls and chats in Aelo: transcripts, analyses with quotes and timecodes, deal summaries and team quality — read-only, within your own access",
   "author": {
     "name": "Andrew Maryasov",
@@ -13,18 +13,91 @@
   "keywords": ["aelo", "call-analytics", "sales", "transcripts", "mcp"],
   "mcpServers": "./.mcp.json",
   "skills": "./skills/",
-  "hooks": {},
   "interface": {
     "displayName": "Aelo",
-    "shortDescription": "Your sales calls and chats, read-only",
-    "longDescription": "Ask about your team's calls and chats in plain words: the assistant searches them, reads transcripts and brings analyses with quotes and timecodes, deal summaries and team quality. It only reads, and only what you see in Aelo yourself.",
-    "developerName": "Grow2.ai",
+    "shortDescription": "Your sales calls, read-only",
+    "longDescription": "Aelo analyses your team's calls and chats and scores them against your own criteria. This plugin lets ChatGPT and Codex read that data on behalf of the signed-in Aelo user, and nothing beyond what that user sees in Aelo.\n\nFive read-only tools: search calls by period, employee, project, call category and quality score; get a transcript with speakers and timecodes (phone numbers, e-mails and card numbers are masked); get the call analysis with its score, summary, key moments with quotes and timecodes, strengths, improvements and agreements; get a deal summary as the Aelo app shows it; get the team's and each employee's quality for a period, as the Aelo dashboard computes it.\n\nYour role and group access are checked on every request, so a manager of one group sees only that group's calls, and a change in access takes effect at once. The plugin never changes your data in Aelo; each read of a full transcript or an analysis is recorded in Aelo's access log. Connected assistants are listed and can be revoked in Aelo under Settings → Profile.\n\nBefore you connect: you need an Aelo account, and your organization's owner or an admin must first switch on \"AI assistants connected by your users\" in Settings → Organization → New kinds of processing.",
+    "developerName": "Auspex Streamline S.L.",
     "category": "Productivity",
+    "capabilities": [
+      "Search calls",
+      "Read transcripts",
+      "Read call analyses",
+      "Read deal summaries",
+      "Read team quality"
+    ],
     "websiteURL": "https://aelo.cloud",
+    "supportURL": "https://aelo.cloud/en/contact",
+    "privacyPolicyURL": "https://aelo.cloud/en/legal/privacy",
+    "termsOfServiceURL": "https://aelo.cloud/en/legal/terms",
     "defaultPrompt": [
       "Find last week's calls with a quality score below 60",
       "What did the analysis list as improvements for this call?",
       "How did my team's quality change this month?"
-    ]
+    ],
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Find low-scored calls and what they have in common",
+              "prompt": "Find last week's calls with a quality score below 60 and tell me what the three worst have in common.",
+              "tools_triggered": "search_records, get_analysis",
+              "expected_behavior": "Return last week's calls scored below 60 and describe what the three lowest-scored have in common, based on their analyses. If there are fewer than three, say so."
+            },
+            {
+              "description": "Quote the customer from the lowest-scored recent call",
+              "prompt": "Take the lowest-scored call of the last 7 days and quote what the customer said about the price, with timecodes.",
+              "tools_triggered": "search_records, get_transcript",
+              "expected_behavior": "Quote the customer's words about the price from the transcript, with timecodes, or say that the price was not discussed. Phone numbers, e-mail addresses and card numbers stay masked."
+            },
+            {
+              "description": "List the improvements from a call analysis",
+              "prompt": "What did the analysis of the most recent analysed call list as improvements for the rep?",
+              "tools_triggered": "search_records, get_analysis",
+              "expected_behavior": "List the improvements recorded in that call's analysis, without adding any of its own."
+            },
+            {
+              "description": "Summarise a deal",
+              "prompt": "Summarise the state of the deal behind the most recent call that is linked to a deal, and what the rep should do next.",
+              "tools_triggered": "search_records, get_deal_summary",
+              "expected_behavior": "Return the deal's state and next step as the Aelo deal card shows them, without inventing either."
+            },
+            {
+              "description": "Compare team quality with the previous period",
+              "prompt": "How did my team's quality change this month compared with the previous period, per employee?",
+              "tools_triggered": "get_team_quality",
+              "expected_behavior": "Report the team's and each employee's quality for the month next to the previous period, as the Aelo dashboard computes it."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsupported deletion: the plugin only reads",
+              "prompt": "Delete last week's calls from Aelo.",
+              "expected_behavior": "Refuse: no tool changes or deletes data in Aelo."
+            },
+            {
+              "description": "Access boundary: signed in as the manager of one group",
+              "prompt": "Show me the calls of the other sales groups, outside my own.",
+              "expected_behavior": "No call of another group is returned. Say that only what this user sees in Aelo is available."
+            },
+            {
+              "description": "Unsupported payment: no billing in the plugin",
+              "prompt": "Upgrade my Aelo plan and pay for it.",
+              "expected_behavior": "Refuse: the plugin has no payment or plan-change tool."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments."
+      },
+      "publication": {
+        "release_notes": "Initial release: five read-only tools over the Aelo connector."
+      }
+    }
   }
 }
